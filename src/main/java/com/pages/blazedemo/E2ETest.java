@@ -1,3 +1,5 @@
+package main.java.com.pages.blazedemo;
+
 import com.common.blazedemo.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +15,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class LoginPage extends Utilities{
+public class E2ETest extends Utilities {
     Properties prop;
 
     {
@@ -34,26 +36,22 @@ public class LoginPage extends Utilities{
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(prop.getProperty("url"));
-
         System.out.println("User is on Page" + driver.getTitle());
 
+        //Select the To and From Destination
         Select frmCountry = new Select(driver.findElement(By.name("fromPort")));
         frmCountry.selectByVisibleText("Philadelphia");
-
         Select toCountry = new Select(driver.findElement(By.name("toPort")));
         toCountry.selectByVisibleText("Rome");
         driver.findElement(By.xpath(prop.getProperty("FindFlight"))).submit();
         Thread.sleep(1000);
-        Assert.assertEquals("Flights from Philadelphia to Rome Aires:", "Flights from Philadelphia to Rome Aires:");
-//driver.quit();
-
+        //To Select Flight from Reserv Page
         System.out.println("User is on Page" + driver.getTitle());
         driver.findElement(By.xpath(prop.getProperty("ChoseFlight"))).click();
-
         long implicitlyWait = 20;
-
         driver.manage().timeouts().implicitlyWait(implicitlyWait, TimeUnit.SECONDS);
         System.out.println("User is on Page" + driver.getTitle());
+        //Enter the Value into the fields
         driver.findElement(By.id("inputName")).sendKeys("TestName");
         driver.findElement(By.id("address")).sendKeys("Test Address");
         driver.findElement(By.id("city")).sendKeys("TestCity");
@@ -67,11 +65,11 @@ public class LoginPage extends Utilities{
         cardType.selectByVisibleText("Visa");
         WebElement chkBtn = driver.findElement(By.id("rememberMe"));
         chkBtn.click();
-        driver.findElement(By.xpath("/html/body/div[2]/form/div[11]/div/input")).submit();
-
+        driver.findElement(By.xpath(prop.getProperty("PurchaseFlight"))).submit();
         driver.manage().timeouts().implicitlyWait(implicitlyWait, TimeUnit.SECONDS);
         System.out.println("User is on Page" + driver.getTitle());
-        System.out.println("Booking Id Value is :" + driver.findElement(By.xpath("/html/body/div[2]/div/table/tbody/tr[1]/td[2]")).getText());
+        //To Print ID
+        System.out.println("Booking Id Value is : " + driver.findElement(By.xpath(prop.getProperty("Id"))).getText());
         driver.quit();
 
     }

@@ -2,7 +2,7 @@
 <suite name="suite">
     <test name="Nopackage" >
         <classes>
-            <class name="LoginPage" />
+            <class name="com.pages.blazedemo.E2ETest"/>
         </classes>
     </test>
 
