@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="suite">
-    <test name="Nopackage" >
+    <test name="blazedemo">
         <classes>
-            <class name="com.pages.blazedemo.E2ETest"/>
+            <class name="main.java.com.pages.blazedemo.E2ETest"/>
         </classes>
     </test>
 
